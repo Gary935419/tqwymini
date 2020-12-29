@@ -1,0 +1,14 @@
+<view class='personal'>
+  <view class='inner'>
+    <form class='personal_form' bindsubmit="formSubmit">
+      <view class='persoanal_info'>
+        <view class='personal_text'>金额</view>
+        <input type='number' name="money" placeholder='请输入金额' />
+      </view>
+	  <button class='wan_btu' form-type="submit">微信支付</button>
+    </form>
+  </view>
+</view>
+
+
+

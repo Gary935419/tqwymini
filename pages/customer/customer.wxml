@@ -1,0 +1,5 @@
+
+<view class='order_none' wx:if="{{setinfo.customercode!=''}}">
+<image src='{{setinfo.customercode}}' data-src='{{setinfo.customercode}}' mode='widthFix' bindtap='previewImg' style='width:60%' />
+</view>
+

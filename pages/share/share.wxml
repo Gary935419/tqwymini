@@ -1,0 +1,16 @@
+<view>
+    <view>
+        <view class='header'>
+           <image src='{{userinfo.avater}}'></image>
+        </view>
+ 
+        <view class='content'>
+            <view>是否确定与会员{{userinfo.nickname}}绑定推荐关系?</view>
+            <text>绑定之后该会员就是您的推荐人</text>
+        </view>
+ 
+        <button class='bottom' type='primary' bindtap='go_share'>
+            确定绑定
+        </button>
+    </view>
+</view>

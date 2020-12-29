@@ -1,0 +1,36 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}" back_path="{{back_path}}"></navigationBar>
+<import src="../../wxParse/wxParse.wxml" />
+<view class='pages' hidden="{{init_hidden}}">
+  <view class='pro_img swiper-bg'>
+    <swiper circular="true" class='swiper_box' indicator-dots="false" autoplay="false" interval="5000" duration="1000">
+		<block wx:for="{{imgUrls}}" wx:key="key">
+		  <swiper-item>
+		    <image src="{{item.imgs}}" class="slide-image" width="750" height="330" />
+		  </swiper-item>
+		</block>
+    </swiper>
+  </view>
+  <view class='pro_message'>
+    <view class='pro_name'>
+      <text class='details_name'>{{goodsdetails.gname}}</text>
+    </view>
+    <view class='pro_price'>
+      <text>积分:</text>{{goodsdetails.gintegral}}</view>
+    <view class='pro_describe'>
+      <text class='kucun'><text>库存:</text>{{goodsdetails.gstock}}个</text>
+      <!-- <text class="mpq"><text>销量:</text>34</text> -->
+    </view>
+  </view>
+  <view class='pro_content'>
+    <view class='pro_title'>商品描述</view>
+    <view class='pro_parameter width_box' class="width_pic">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+  <view class='footer_fix'>
+    <view class='footer_btn'>
+      <button class='details_btn col-0068c6' bindtap='goOrder'>立即兑换</button>
+    </view>
+  </view>
+</view>
+

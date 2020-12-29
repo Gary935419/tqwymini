@@ -1,0 +1,4 @@
+/* pages/task_ex/task_ex.wxss */
+page {
+  background: #f2f2f2;
+}

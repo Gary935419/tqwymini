@@ -1,0 +1,146 @@
+<!--pages/my/my.wxml-->
+<view class='my' hidden="{{init_hidden}}">
+  <view class='inner'>
+    <view class='my_top'>
+      <image src='../../images/my-banner.jpg' mode="widthFix" style='width:100%;' />
+      <view class='my_top_box'>
+		<image wx:if="{{isGrant}}" src='{{userinfo.avater}}' mode="widthFix" />
+		<image wx:else src='../../images/header.png' mode="widthFix" />
+        <view class='my_top_info'>
+			 <view class='my_top_info1' wx:if="{{isGrant}}">
+				<view class='my_name'>{{userinfo.nickname}}</view>
+				<image src='../../images/my2.png' mode="widthFix" style='width:9%;' />
+				<view class='my_num' wx:if="{{userinfo.gid != 0}}" bindtap='jumpgrade'>{{userinfo.gname}}</view>
+				<view class='my_num' wx:else>普通会员</view>
+			 </view>
+			  <view class='my_top_link' hover-class="none" wx:if="{{isGrant}}" bindtap='go_news'>
+				<image src='../../images/my4.png' mode="widthFix" style='width:100%;' />
+				<view class='my_top_link_text' wx:if="{{userinfo.newcount != 0}}">{{userinfo.newcount}}</view>
+			  </view>
+			  <view class="no_grant" wx:else>
+				<button class='bottom' type='primary' style="color: #fff;background-color: #38a1db;width: 80%;" bindtap='bind_grantlogin'>
+				  授权登录
+				</button>
+			  </view>
+       </view>
+      </view>
+    </view>
+
+    <!-- <image src='../../images/my1.jpg' mode="widthFix" style='width:100%;' /> -->
+
+    <view class='my_section'>
+      <view class='my_title'>我的资产</view>
+      <view class='my_area'>
+        <view class='my_info' bindtap='go_integral'>
+          <view class='my_info_num' wx:if="{{isGrant}}">{{userinfo.integral}}</view>
+		  <view class='my_info_num' wx:else>0.00</view>
+          <view class='my_info_caption'>我的积分</view>
+        </view>
+        <view class='my_info' bindtap='go_wallet'>
+		  <view class='my_info_num' wx:if="{{isGrant}}">{{userinfo.wallet}}</view>
+		  <view class='my_info_num' wx:else>0.00</view>
+          <view class='my_info_caption'>我的余额</view>
+        </view>
+        <view class='my_info' bindtap='go_commission'>
+		  <view class='my_info_num' wx:if="{{isGrant}}">{{userinfo.walletcommission}}</view>
+		  <view class='my_info_num' wx:else>0.00</view>
+          <view class='my_info_caption'>我的佣金</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='my_section'>
+      <view class='my_title'>我的提现</view>
+      <view class='my_area'>
+		<view class='my_info' bindtap='go_withdrawal'>
+		  <view class='my_info_num' wx:if="{{isGrant}}">{{userinfo.wallet}}</view>
+		  <view class='my_info_num' wx:else>0.00</view>
+		  <view class='my_info_caption'>可提现押金</view>
+		</view>
+		<view class='my_info' bindtap='go_walletcommission'>
+		  <view class='my_info_num' wx:if="{{isGrant}}">{{userinfo.walletcommission}}</view>
+		  <view class='my_info_num' wx:else>0.00</view>
+		  <view class='my_info_caption'>可提现佣金</view>
+		</view>
+      </view>
+    </view>
+	
+    <view class='my_section'>
+      <view class='my_title'>我的任务</view>
+      <view class='my_area'>
+        <view class='my_link' open-type='switchTab' hover-class="none" bindtap='go_handle'>
+          <image src='../../images/my5.png' mode="widthFix" style='width:50%;' />
+		  <view class='my_top_link_text' style="right: 3px;" wx:if="{{userinfo.ostate1 != 0}}">{{userinfo.ostate1}}</view>
+          <view class='my_link_text'>待处理</view>
+        </view>
+        <view class='my_link' open-type='switchTab' hover-class="none" bindtap='go_examine'>
+          <image src='../../images/my6.png' mode="widthFix" style='width:50%;' />
+		  <view class='my_top_link_text' style="right: 3px;" wx:if="{{userinfo.ostate2 != 0}}">{{userinfo.ostate2}}</view>
+          <view class='my_link_text'>审核中</view>
+        </view>
+        <view class='my_link' open-type='switchTab' hover-class="none" bindtap='go_adopt'>
+          <image src='../../images/my7.png' mode="widthFix" style='width:50%;' />
+		  <view class='my_top_link_text' style="right: 3px;" wx:if="{{userinfo.ostate3 != 0}}">{{userinfo.ostate3}}</view>
+          <view class='my_link_text'>已通过</view>
+        </view>
+        <view class='my_link' open-type='switchTab' hover-class="none" bindtap='go_adoptno'>
+          <image src='../../images/my8.png' mode="widthFix" style='width:50%;' />
+		  <view class='my_top_link_text' style="right: 3px;" wx:if="{{userinfo.ostate4 != 0}}">{{userinfo.ostate4}}</view>
+          <view class='my_link_text'>未通过</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='my_section'>
+      <view class='my_title'>我的服务</view>
+      <view class='my_area'>
+        <view class='my_link' hover-class="none" bindtap='go_bankcard'>
+          <image src='../../images/my9.png' mode="widthFix" style='width:40%;' />
+          <view class='my_link_text'>银行卡</view>
+        </view>
+        <view class='my_link' bindtap='go_deposit'>
+          <image src='../../images/my10.png' mode="widthFix" style='width:40%;' />
+          <view class='my_link_text'>交押金</view>
+        </view>
+        <navigator class='my_link' url="../task/task" open-type='switchTab' hover-class="none">
+          <image src='../../images/my11.png' mode="widthFix" style='width:40%;' />
+          <view class='my_link_text'>接任务</view>
+        </navigator>
+        <view class='my_link' hover-class="none" bindtap='go_set'>
+          <image src='../../images/my12.png' mode="widthFix" style='width:40%;' />
+          <view class='my_link_text'>设置</view>
+        </view>
+		<view class='my_link' hover-class="none" bindtap='go_share'>
+		  <image src='../../images/my9.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>推荐人</view>
+		</view>
+      </view>
+    </view>
+	
+	<view class='my_section'>
+	  <view class='my_title'>我的客服</view>
+	  <view class='my_area'>
+	    <view class='my_link' hover-class="none" bindtap='go_customercode'>
+	      <image src='../../images/img123.png' mode="widthFix" style='width:40%;' />
+	      <view class='my_link_text'>客服二维码</view>
+	    </view>
+	  </view>
+	</view>
+	
+	<view class='my_section'>
+	  <view class='my_title'>积分商城</view>
+	  <view style="display: flex;align-items: center;">
+	    <view class='my_link' hover-class="none" bindtap='go_integralgoods'>
+	      <image src='../../images/shopnew.png' mode="widthFix" style='width:40%;' />
+	      <view class='my_link_text'>积分商品</view>
+	    </view>
+		<view class='my_link' hover-class="none" bindtap='go_myintegralgoods'>
+		  <image src='../../images/exchange.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>我的兑换</view>
+		</view>
+	  </view>
+	</view>
+
+    <view class='blank20'></view>
+  </view>
+</view>

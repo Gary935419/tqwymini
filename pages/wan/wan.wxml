@@ -1,0 +1,52 @@
+<!-- 
+<view class='wan'>
+  <view class='inner'>
+    <form class='wan_form'>
+      <view class='wan_info'>
+        <view class='wan_text'>上传图片</view>
+        <view class='wan_box'>
+          <button class='wan_box_btu'></button>
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+          <image src='../../images/none.jpg' mode='widthFix' />
+        </view>
+      </view>
+
+      <view class='wan_info'>
+        <view class='wan_text'>备注</view>
+        <textarea placeholder=''></textarea>
+      </view>
+
+      <button class='wan_btu'>提交</button>
+    </form>
+</view>
+</view>
+ -->
+ <view class="wan1">
+ <view class="picture_list">
+   <view class='wan_text'>任务截图：</view>
+   <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
+     <image wx:if="{{item.upload_percent < 100}}" src="{{item.path}}" mode="aspectFill"></image>
+     <image wx:if="{{item.upload_percent == 100}}" src="{{item.path_server}}" mode="aspectFill"></image>
+     <view class="upload_progress" wx:if="{{item.upload_percent < 100}}" data-index="{{index}}" bindtap="previewImg">{{item.upload_percent}}%</view>
+     <text class='del' bindtap='deleteImg' data-src='{{image}}' style='display:{{isDel}}' data-index="{{index}}">×</text>
+   </view>
+ 
+   <view class='picture_item'>
+     <view class="add-image" bindtap='uploadpic'>
+       <text>+</text>
+     </view>
+   </view>
+ </view>
+ <view class='wan_info'>
+   <view class='wan_text'>任务备注：</view>
+   <textarea placeholder='请您录入备注信息.' bindinput='bzInput'></textarea>
+ </view>
+ <button bindtap='gouploadimage' class='yes-upload'>提交审核</button>
+ 
+</view>

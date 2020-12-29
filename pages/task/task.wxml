@@ -1,0 +1,39 @@
+<!--pages/task/task.wxml-->
+<view class='task'>
+  <view class='task_top'>
+	  <view class="task_top_text {{tid == 0?'task_top_current':''}}" data-id="0" bindtap="go_tasklist">全部</view> 
+    <view wx:for="{{classlist}}" wx:key="key" class="task_top_text {{tid == item.tid?'task_top_current':''}}" data-id="{{item.tid}}" bindtap="go_tasklist">{{item.tname}}</view>
+<!--    <view class="task_top_text {{tid == 1?'task_top_current':''}}">高额</view>
+    <view class="task_top_text {{tid == 2?'task_top_current':''}}">简单</view> 
+    <view class="task_top_text {{tid == 3?'task_top_current':''}}">快速</view>
+    <view class="task_top_text {{tid == 4?'task_top_current':''}}">长期</view> -->
+  </view>
+
+  <view class='task_box'>
+   <view class='task_box_type'>
+      <!-- <view class='task_box_type_text' bindtap='liubtn1'>类型</view> -->
+      <!-- <image src='../../images/jian1.png' mode='widthFix' style='width:15%' /> -->
+    </view>
+	<view class="task_box_text {{order == 0?'task_box_current':''}}" data-id="0" bindtap="go_taskorder">默认</view>
+	<!-- <view class='task_box_text'>最新</view> -->
+	<view class="task_box_text {{order == 1?'task_box_current':''}}" data-id="1" bindtap="go_taskorder">价格👆</view>
+	<view class="task_box_text {{order == 2?'task_box_current':''}}" style="margin-right: 20%;" data-id="2" bindtap="go_taskorder">价格👇</view>
+  </view>
+
+  <view class="order_block" wx:for="{{tasklist}}" wx:key="key" data-id='{{item.taid}}' bindtap='go_taskdetail'>
+    <view class='order_list'>
+      <image src='{{item.taimg}}' mode='widthFix'/>
+       <view class='order_box'>
+        <view class='order_title'>{{item.tatitle}}<view class='task_caption' wx:if="{{item.if_recommend==1}}">推荐</view></view>
+        <view class='order_info'>
+          <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
+        </view>
+      </view>
+      <view class='order_area' >
+        <view class='order_text'>赚{{item.tacommission}}积分</view>
+        <view class='order_explain'>剩余{{item.tanums}}个名额</view>
+      </view>
+    </view>
+	
+  </view>
+</view>

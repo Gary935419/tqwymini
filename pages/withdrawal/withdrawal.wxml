@@ -1,0 +1,43 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='personal'>
+  <view class='inner'>
+    <form class='personal_form' bindsubmit="formSubmit">
+      <view class='persoanal_info'>
+        <view class='personal_text'>金额</view>
+        <input type='number' name="wrprice" placeholder='请输入提现金额' />
+      </view>
+	  <view class='task_ex_model_text' style="margin-left: 15px;margin-right: 15px;">
+	  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+	  </view>
+	  <view class='order_none' wx:if="{{setinfo.customercode!=''}}">
+	  <image src='{{setinfo.customercode}}' data-src='{{setinfo.customercode}}' mode='widthFix' bindtap='previewImg' style='width:60%' />
+	  </view>
+	  <view>
+		  <!-- <button class='wan_btu' open-type="share" hidden='{{hidden3}}'>去分享</button> -->
+		  <button class='wan_btu' hidden='{{hidden3}}' bindtap='previewImg1'>去分享</button>
+	  </view>
+	  <view>
+		  <button class='wan_btu' hidden='{{hidden2}}' form-type="submit">确认提现</button>
+	  </view>
+    </form>
+  </view>
+</view>
+<view class='news'>
+  <view class='inner'>
+    <view class='news_list' hidden='{{hidden}}' wx:for="{{list}}" wx:key="key">
+      <view class='news_item'>
+		<view class='news_title'>{{item.add_time}}</view>
+        <view class='news_text' wx:if='{{item.wrstate==1}}'>恭喜您!您申请的￥{{item.wrprice}}押金提现已经审核通过啦!</view>
+		<view class='news_text' wx:elif='{{item.wrstate==2}}'>您申请的￥{{item.wrprice}}押金提现，我们后台正在为您审核，请耐心等候。</view>
+		<view class='news_text' wx:else>抱歉!您申请的￥{{item.wrprice}}押金提现没有通过审核!<text>\n</text>驳回原因:{{item.reject}}</view>
+      </view>
+    </view>
+	<view class='news_list' hidden='{{hidden1}}'>
+	  <view class='news_item' style="text-align: center;margin-top: 0.75rem;">
+		<view class='news_title'>暂无数据</view>
+	  </view>
+	</view>
+  </view>
+</view>
+
+

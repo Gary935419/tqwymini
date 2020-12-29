@@ -1,0 +1,13 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='personal'>
+  <view class='inner'>
+    <form class='personal_form'>
+	  <view class='task_ex_model_text' style="margin-left: 15px;margin-right: 15px;margin-top: 50px;">
+	  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+	  </view>
+    </form>
+  </view>
+</view>
+
+
+

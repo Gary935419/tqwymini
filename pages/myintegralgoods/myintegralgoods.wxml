@@ -1,0 +1,46 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}"></navigationBar>
+<view class='content'>
+  <!-- 有结果 -->
+  <view class='list'>
+    <view class='list-bg'>
+     <view class='list-item' wx:for="{{list}}" wx:key="key" data-id='{{item.ogid}}'>
+        <view class='list-img'>
+          <image src='{{item.gimg}}'></image>
+        </view>
+        <view class='list-right'>
+          <view class='list-tlt'>
+            {{item.gname}}
+          </view>
+          <text class='list-remark'>{{item.logistics}}</text>
+          <view class='list-info'>
+            <view class='list-price'>
+				积分:<text>{{item.gintegral}}</text>
+            </view>
+            <view style="font-size: 20rpx;color: #ff0000;" wx:if="{{item.ostate==='待发货'}}">
+                状态:<text>{{item.ostate}}</text>
+            </view>
+			<view style="font-size: 20rpx;color: #4CD964;"  wx:else>
+			    状态:<text>{{item.ostate}}</text>
+			</view>
+          </view>
+		  
+		  <view class='list-info'>
+				<view class='list-num'>
+					兑换时间:<text>{{item.addtime}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					发货时间:<text>{{item.gotime}}</text>
+				</view>
+		  </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 结果为空 -->
+ <view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
+    <image class='empty-img' src="../../images/empty.png"></image>
+    <text>很抱歉，没有找到相关商品！</text>
+  </view>
+</view>

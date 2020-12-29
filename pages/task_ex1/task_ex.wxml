@@ -1,0 +1,66 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='task_ex'>
+  <view class='inner'>
+    <view class='task_ex_top'>
+      <view class='task_ex_top_box'>
+        <view class='task_ex_top_title'>{{taskdetails.otatitle}}</view>
+		<view>
+			<view class='task_ex_top_price'>赚{{taskdetails.otacommission}}积分</view>
+			<view class='task_ex_top_price'>扣{{taskdetails.otadeposit}}押金</view>
+		</view>
+      </view>
+      <view class='task_ex_top_list'>
+        <view class='task_ex_top_item'>
+          <view class='task_ex_top_num'>{{taskdetails.otadays}}天</view>
+          <view class='task_ex_top_caption'>任务时间</view>
+        <!--  / .task_ex_top_item--></view>
+        <view class='task_ex_top_item'>
+          <view class='task_ex_top_num'>{{taskdetails.oexaminedays}}天</view>
+          <view class='task_ex_top_caption'>审核时间</view>
+        <!--  / .task_ex_top_item--></view>
+        <view class='task_ex_top_item'>
+          <view class='task_ex_top_num'>每人{{taskdetails.oconstraintdays}}次</view>
+          <view class='task_ex_top_caption'>任务次数</view>
+        <!--  / .task_ex_top_item--></view>
+      <!--  / .task_ex_top_list--></view>
+    <!--  /. task_ex_top--></view>
+
+    <view class='task_ex_center'>
+      <view class="task_ex_title">任务要求</view>
+      <view class='task_ex_top_box'>
+        <view class='task_ex_center_left'>
+          <template is="wxParse" data="{{wxParseData:article1.nodes}}" />
+        </view>
+      <!--  / .task_ex_top_box--></view>
+    <!--  / .task_ex_center--></view>
+
+    <view class='task_ex_center'>
+      <view class="task_ex_title">任务链接</view>
+      <view class='task_ex_top_box'>
+        <view class='task_ex_center_left'>
+          {{taskdetails.otaurl}}
+        </view>
+        <view class='task_ex_jiao' data-url='{{taskdetails.otaurl}}' bindtap='go_copy'>复制链接</view>
+      <!--  / .task_ex_top_box--></view>
+    <!--  / .task_ex_center--></view>
+	
+    <view class='task_ex_block'>
+      <view class="task_ex_title">任务步骤</view>
+      <view class='task_ex_area'>
+            <template is="wxParse" data="{{wxParseData:article2.nodes}}" />
+      <!--  / .task_ex_area--></view>
+    <!--  / .task_ex_block--></view>
+  <!--  / .inner--></view>
+  <view wx:if="{{ ostate == 1 }}">
+	  <view class='task_ex_link' data-id='{{taskdetails.oid}}' bindtap='go_tasksendimg'>完成任务</view>
+  </view>
+  <view wx:if="{{ ostate == 2 }}">
+  	  <view class='task_ex_link' style="background-color: #FF820B;">后台正在为您审核，请耐心等待。</view>
+  </view>
+  <view wx:if="{{ ostate == 3}}" >
+  	  <view class='task_ex_link' style="background-color: green;">恭喜您，审核已经通过。</view>
+  </view>
+  <view wx:if="{{ ostate == 4}}">
+  	  <view class='task_ex_link' style="background-color: red;">抱歉，您的审核没有通过。</view>
+  </view>
+<!--  / .task_ex--></view>

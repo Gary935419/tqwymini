@@ -1,0 +1,20 @@
+
+<view class='order_none' wx:if="{{userinfo.mqrcode!=''}}">
+<image src='{{userinfo.mqrcode}}' data-src='{{userinfo.mqrcode}}' mode='widthFix' bindtap='previewImg' style='width:60%' />
+</view>
+<view class='news'>
+  <view class='inner'>
+    <view class='news_list' hidden='{{hidden}}' wx:for="{{list}}" wx:key="key">
+      <view class='news_item'>
+		<view class='news_title'>{{item.badd_time}}</view>
+        <view class='news_text'>我成为了会员昵称是“{{item.nickname}}”的推荐人！</view>
+      </view>
+    </view>
+	
+	<view class='news_list' hidden='{{hidden1}}'>
+	  <view class='news_item' style="text-align: center;margin-top: 0.75rem;">
+		<view class='news_title'>暂无数据</view>
+	  </view>
+	</view>
+  </view>
+</view>

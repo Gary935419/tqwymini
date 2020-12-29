@@ -1,0 +1,25 @@
+<!--pages/news/news.wxml-->
+<view class='news'>
+  <view class='inner'>
+	  
+    <view class='news_list' hidden='{{hidden}}' wx:for="{{list}}" wx:key="key">
+      <view class='news_item'>
+		<view class='news_title'>{{item.add_time}}</view>
+        <view class='news_text' wx:if="{{item.wtype==1}}">任务审核通过！获得￥{{item.wprice}}佣金！</view>
+		<view class='news_text' wx:elif="{{item.wtype==2}}">接任务！扣除￥{{item.wprice}}押金！</view>
+		<view class='news_text' wx:elif="{{item.wtype==3}}">任务审核通过！返还￥{{item.wprice}}押金！</view>
+		<view class='news_text' wx:elif="{{item.wtype==4}}">押金充值！充值￥{{item.wprice}}押金！</view>
+		<view class='news_text' wx:elif="{{item.wtype==5}}">提现扣款！扣款￥{{item.wprice}}！</view>
+		<view class='news_text' wx:elif="{{item.wtype==6}}">提现驳回返款！返款￥{{item.wprice}}！</view>
+      </view>
+    </view>
+	
+	<view class='news_list' hidden='{{hidden1}}'>
+	  <view class='news_item' style="text-align: center;margin-top: 0.75rem;">
+		<view class='news_title'>暂无数据</view>
+	  </view>
+	</view>
+  </view>
+</view>
+
+

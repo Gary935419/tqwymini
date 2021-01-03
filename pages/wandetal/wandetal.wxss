@@ -57,7 +57,6 @@ image {
   left: 0;
   opacity: 0.7;
   border-radius: 8rpx;
-  background-color: #000;
   color: #fff;
   width: 167rpx;
   height: 160rpx;
@@ -75,7 +74,8 @@ image {
   color: #fff;
   background-color: #00a0e9;
   border-radius: 25rpx;
-  margin-bottom: 1.875rem;
+  margin-bottom: 25px;
+  margin-top: 20px;
 }
 
 .logo-wrapper {

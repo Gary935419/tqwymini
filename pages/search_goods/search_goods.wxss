@@ -127,7 +127,7 @@
   display:block;
   /* height:22rpx; */
   line-height: 30rpx;
-  margin-top:15rpx;
+  margin-top:66rpx;
 }
 
 .list-info{

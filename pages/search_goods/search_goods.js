@@ -14,7 +14,6 @@ Page({
     //第几页
     page: 1,
     keycode: '',
-    inithidden: false,
     empty_hidden: true,
 	inputValue: null,
     //商品

@@ -1,4 +1,7 @@
 <!--pages/personal/personal.wxml-->
+<view class='logo-wrapper'>
+         <image src='../../images/tqwy.png'></image>
+ </view>
 <view class='personal'>
   <view class='inner'>
     <form class='personal_form' bindsubmit="formSubmit">
@@ -15,8 +18,8 @@
         <input type='text' name="email" value="{{userinfo.email}}" placeholder='请输入邮箱地址' />
       </view>
 	  <view class='persoanal_info'>
-	    <view class='personal_text' style="width: 20%;">收货地址</view>
-	    <input type='text' name="address" value="{{userinfo.address}}" placeholder='请输入收货地址' />
+	    <view class='personal_text' style="width: 20%;">联系地址</view>
+	    <input type='text' name="address" value="{{userinfo.address}}" placeholder='请输入联系地址' />
 	  </view>
 	  <button class='wan_btu' form-type="submit">确认更新</button>
     </form>

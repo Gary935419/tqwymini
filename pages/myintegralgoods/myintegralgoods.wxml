@@ -9,29 +9,49 @@
         </view>
         <view class='list-right'>
           <view class='list-tlt'>
-            {{item.gname}}
+            {{item.shopname}}
           </view>
-          <text class='list-remark'>{{item.logistics}}</text>
           <view class='list-info'>
-            <view class='list-price'>
-				积分:<text>{{item.gintegral}}</text>
+            <view style="font-size: 20rpx;color: red;" wx:if="{{item.ostate==='3'}}">
+                <text> {{item.ostatename}}</text>
             </view>
-            <view style="font-size: 20rpx;color: #ff0000;" wx:if="{{item.ostate==='待发货'}}">
-                状态:<text>{{item.ostate}}</text>
-            </view>
-			<view style="font-size: 20rpx;color: #4CD964;"  wx:else>
-			    状态:<text>{{item.ostate}}</text>
+			<view style="font-size: 20rpx;color: green;" wx:elif="{{item.ostate==='2'}}">
+			    <text>{{item.ostatename}}</text>
+			</view>
+			<view style="font-size: 20rpx;color: #FF820B;"  wx:else>
+			    <text>{{item.ostatename}}</text>
 			</view>
           </view>
-		  
 		  <view class='list-info'>
 				<view class='list-num'>
-					兑换时间:<text>{{item.addtime}}</text>
+					真实姓名：<text>{{item.truename}}</text>
 				</view>
 		  </view>
 		  <view class='list-info'>
 				<view class='list-num'>
-					发货时间:<text>{{item.gotime}}</text>
+					联系电话：<text>{{item.mobile}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					邮件地址：<text>{{item.email}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					合作意向：<text>\n</text>
+					<text>{{item.content}}</text>
+				</view>
+		  </view>
+		  <view class='list-info' wx:if="{{item.ostate==='3'}}">
+				<view class='list-num'>
+					驳回意见：<text>\n</text>
+					<text>{{item.tareject}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					申请时间：<text>{{item.addtime}}</text>
 				</view>
 		  </view>
         </view>
@@ -41,6 +61,6 @@
   <!-- 结果为空 -->
  <view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
     <image class='empty-img' src="../../images/empty.png"></image>
-    <text>很抱歉，没有找到相关商品！</text>
+    <text>很抱歉，没有找到相关合作信息！</text>
   </view>
 </view>

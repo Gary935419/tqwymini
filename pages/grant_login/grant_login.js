@@ -18,21 +18,6 @@ Page({
     //默认不显示授权页面
     flag: false,
     path: 'index',
-	// 普通选择器列表设置,及初始化
-	countryList: [],
-	countryIndex: 0,
-	cityname: '',
-  },
- // 选择国家函数
-  changeCountry(e){
-	var that = this;
-	console.log(e.detail.value);
-	let cityname = that.data.countryList[e.detail.value];
-	console.log(cityname);
-    this.setData({
-		countryIndex: e.detail.value,
-		cityname: cityname,
-		});
   },
 
   /**
@@ -63,21 +48,27 @@ Page({
       //用户按了拒绝按钮
       wx.showModal({
         title: '温馨提示',
-        content: '您点击了拒绝授权，将无法享受小程序的部分功能，请授权之后再进入呦!',
+        content: '拒绝授权，将无法享受小程序的部分功能，请授权之后再进入呦!',
         showCancel: false,
         confirmText: '返回授权',
 		confirmColor: '#111111',//确定文字的颜色
-        success: function(res) {
-          if (res.confirm) {
-            // console.log('用户点击了“返回授权”')
-          }
-        }
+		success: res => {
+		    wx.hideLoading();
+		    
+		    console.log(res);
+		    that.setData({
+		        userInfo: res.data.result
+		    })
+		},
+		fail: err => {
+		    console.log(err);
+		}
       })
     }
   },
   bindGetUserInfoback: function(e) {
        wx.switchTab({
-			url: '/pages/my/my',
+			url: '/pages/index/index',
 	   })
   },
   /**
@@ -136,52 +127,11 @@ Page({
 				duration: 3000
 			})
             }
-          }
-        })
-      }
-    })
-  },
-  /**
-   * 获取城市信息
-   */
-  get_city_info: function() {
-    var that = this;
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      url: app.taskapi + '/Index/citylist',
-      method: 'post',
-      data: {
-        token: main.get_storage('token'),
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function(res) {
-        if (!res.data) {
-          wx.showToast({
-            title: '加载错误',
-            icon: 'loading',
-            duration: 10000
-          })
-        }
-        if (res.data.errcode == '200') {
-          wx.hideLoading();
-		  if (res.data.data.citylist.length === 0) {
-		  	that.setData({
-		  	  hidden: true,
-		  	  hidden1: false,
-		  	})
-		  } else{
-		  	that.setData({
-		  	  hidden: false,
-		  	  hidden1: true,
-		  	  countryList: res.data.data.citylist,
-		  	})
+          },
+		  fail: err => {
+		      console.log(err);
 		  }
-		  console.log(res.data.data.citylist)
-        }
+        })
       }
     })
   },
@@ -195,8 +145,6 @@ Page({
         path: options.path,
       })
     }
-	//获取城市信息
-	that.get_city_info();
     //判断是否已经授权
     wx.getSetting({
       success: res => {
@@ -211,7 +159,10 @@ Page({
             flag: true,
           })
         }
-      }
+      },
+	  fail: err => {
+	      console.log(err);
+	  }
     })
   },
 

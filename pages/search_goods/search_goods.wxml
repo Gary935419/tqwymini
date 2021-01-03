@@ -2,13 +2,14 @@
 <view class="weui-search-bar">
 		<view class="weui-search-bar__form">
 		<!-- 搜索框 -->
-			<view class="weui-search-bar__box" style="width: 20rem;">
+			<view class="weui-search-bar__box" style="width: 18rem;">
 				<icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-				<input type='text' placeholder='请输入搜索内容' value='{{inputValue}}' name='keywords' bindinput='keyInput' />
+				<input type='text' value='{{inputValue}}' name='keywords' bindinput='keyInput' />
 			</view>
 		</view>
 		<!-- 搜索按钮,调用搜索查询方法 -->
-		<view class="weui-search-bar__cancel-btn" bindtap='searchgoods'>搜索</view>
+		<!-- <view class="weui-search-bar__cancel-btn" bindtap='searchgoods'>搜索</view> -->
+		<button bindtap='searchgoods' class='weui-search-bar__cancel-btn' style="font-size: 15px;">搜索</button>
 	</view>
 <view class='content'>
   <!-- 有结果 -->
@@ -20,17 +21,10 @@
         </view>
         <view class='list-right'>
           <view class='list-tlt'>
-            {{item.gname}}
+            <!-- <image style="width: 50px;height: 20px;" src='../../images/csp.jpg'></image> -->
+        			   {{item.gname}}
           </view>
           <text class='list-remark'>{{item.gtitle}}</text>
-          <view class='list-info'>
-            <view class='list-price'>积分:
-              <text>{{item.gintegral}}</text>
-            </view>
-            <view class='list-num'>
-              <text>库存:</text>{{item.gstock}}个
-            </view>
-          </view>
         </view>
       </view>
     </view>
@@ -38,6 +32,6 @@
   <!-- 结果为空 -->
  <view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
     <image class='empty-img' src="../../images/empty.png"></image>
-    <text>很抱歉，没有找到相关商品！</text>
+    <text>很抱歉，没有找到相关商家！</text>
   </view>
 </view>

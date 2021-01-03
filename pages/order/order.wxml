@@ -3,52 +3,34 @@
 
   <view class='order_top'>
     <view class='inner'>
-      <view data-id="0" bindtap="changeTabbar" data-id="0" bindtap="go_orderlistnew" class="order_top_text {{ostate == 0 ? 'order_top_current' : ''}}">全部</view>
-      <view data-id="1" bindtap="changeTabbar" data-id="1" bindtap="go_orderlistnew" class="order_top_text {{ostate == 1 ? 'order_top_current' : ''}}">待处理</view>
-      <view data-id="2" bindtap="changeTabbar" data-id="2" bindtap="go_orderlistnew" class="order_top_text {{ostate == 2 ? 'order_top_current' : ''}}">审核中</view>
-      <view data-id="3" bindtap="changeTabbar" data-id="3" bindtap="go_orderlistnew" class="order_top_text {{ostate == 3 ? 'order_top_current' : ''}}">已通过</view>
-      <view data-id="4" bindtap="changeTabbar" data-id="4" bindtap="go_orderlistnew" class="order_top_text {{ostate == 4 ? 'order_top_current' : ''}}">未通过</view>
+      <view data-id="0" bindtap="changeTabbar" data-id="0" class="order_top_text {{ostate == 0 ? 'order_top_current' : ''}}">全部</view>
+      <!-- <view data-id="1" bindtap="changeTabbar" data-id="1" bindtap="go_orderlistnew" class="order_top_text {{ostate == 1 ? 'order_top_current' : ''}}">待处理</view> -->
+      <view data-id="2" bindtap="changeTabbar" data-id="2" class="order_top_text {{ostate == 2 ? 'order_top_current' : ''}}">审核中</view>
+      <view data-id="3" bindtap="changeTabbar" data-id="3" class="order_top_text {{ostate == 3 ? 'order_top_current' : ''}}">已通过</view>
+      <view data-id="4" bindtap="changeTabbar" data-id="4" class="order_top_text {{ostate == 4 ? 'order_top_current' : ''}}">未通过</view>
     <!--  / .inner--></view>
   <!-- order_top--></view>
 
   <view class='order_none' hidden="{{init_hidden}}">
     <image src='../../images/none.jpg' mode='widthFix' style='width:60%' />
     <view class='order_none_text'>暂无数据</view>
-    <view class='order_none_text'>赶紧去做任务吧</view>
-    <view class='order_none_link' bindtap="go_tasklist">做任务</view>
+    <view class='order_none_text'>赶紧去商户入驻吧！</view>
+    <view class='order_none_link' bindtap="go_tasklist">去入驻</view>
   <!--  / .order_none--></view>
 
   <view class="order_block {{ostate == 0 ? '' : 'tui-hide'}}">
     <view class='order_list'  wx:for="{{orderall}}" wx:key="key" data-id='{{item.oid}}' bindtap='go_taskorderdetail'>
-      <image src='{{item.otaimg}}' mode='widthFix' />
       <view class='order_box' hover-class="none">
-        <view class='order_title'>{{item.otatitle}}</view>
-        <view class='order_info'>
-        <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
-        <!--  / .order_info--></view>
-      <!--  / .order_box--></view>
+        <view class='order_title'>{{item.truename}}</view>
+        <view class='order_info'>{{item.shopname}}</view>
+      </view>
       <view class='order_area'>
         <view class='order_text' wx:if="{{ item.ostate == 1 }}">待处理</view>
-		<view class='order_text' wx:elif="{{ item.ostate == 2 }}">审核中</view>
-		<view class='order_text' wx:elif="{{ item.ostate == 3 }}">已通过</view>
-		<view class='order_text' wx:elif="{{ item.ostate == 4 }}">未通过</view>
+		<view class='order_text' style="font-weight: bold;color: #FF820B;" wx:elif="{{ item.ostate == 2 }}">审核中</view>
+		<view class='order_text' style="font-weight: bold;color: green;" wx:elif="{{ item.ostate == 3 }}">已通过</view>
+		<view class='order_text' style="font-weight: bold;color: red;"wx:elif="{{ item.ostate == 4 }}">未通过</view>
 		<view class='order_text' wx:else>未生效</view>
-        <!-- <navigator class='order_link' url="../task/task" hover-class="none">继续任务</navigator> -->
-      <!--  / .order_area--></view>
-    <!--  / .order_list--></view>
-  <!--  / .order_block--></view>
-
-  <view class="order_block {{ostate == 1 ? '' : 'tui-hide'}}">
-    <view class='order_list' wx:for="{{orderostate1}}" wx:key="key" data-id='{{item.oid}}' bindtap='go_taskorderdetail'>
-      <image src='{{item.otaimg}}' mode='widthFix' />
-      <view class='order_box' url="../task_ex/task_ex" hover-class="none">
-        <view class='order_title'>{{item.otatitle}}</view>
-        <view class='order_info'>
-        <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
-        <!--  / .order_info--></view>
-      <!--  / .order_box--></view>
-      <view class='order_area'>
-        <view class='order_text'>待处理</view>
+		<view class='order_explain'>{{item.add_time}}</view>
         <!-- <navigator class='order_link' url="../task/task" hover-class="none">继续任务</navigator> -->
       <!--  / .order_area--></view>
     <!--  / .order_list--></view>
@@ -56,46 +38,39 @@
 
   <view class="order_block {{ostate == 2 ? '' : 'tui-hide'}}">
      <view class='order_list' wx:for="{{orderostate2}}" wx:key="key" data-id='{{item.oid}}' bindtap='go_taskorderdetail'>
-      <image src='{{item.otaimg}}' mode='widthFix' />
       <view class='order_box' url="../task_ex/task_ex" hover-class="none">
-        <view class='order_title'>{{item.otatitle}}</view>
-        <view class='order_info'>
-        <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
-        <!--  / .order_info--></view>
+        <view class='order_title'>{{item.truename}}</view>
+        <view class='order_info'>{{item.shopname}}</view>
       <!--  / .order_box--></view>
       <view class='order_area'>
-        <view class='order_text'>审核中</view>
+        <view class='order_text' style="font-weight: bold;color: #FF820B;">审核中</view>
+		<view class='order_explain'>{{item.add_time}}</view>
       <!--  / .order_area--></view>
     <!--  / .order_list--></view>
   <!--  / .order_block--></view>
 
   <view class="order_block {{ostate == 3 ? '' : 'tui-hide'}}">
      <view class='order_list' wx:for="{{orderostate3}}" wx:key="key" data-id='{{item.oid}}' bindtap='go_taskorderdetail'>
-      <image src='{{item.otaimg}}' mode='widthFix' />
       <view class='order_box' url="../task_ex/task_ex" hover-class="none">
-        <view class='order_title'>{{item.otatitle}}</view>
-        <view class='order_info'>
-        <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
-        <!--  / .order_info--></view>
+        <view class='order_title'>{{item.truename}}</view>
+        <view class='order_info'>{{item.shopname}}</view>
       <!--  / .order_box--></view>
       <view class='order_area'>
-        <view class='order_text'>通过</view>
+        <view class='order_text' style="font-weight: bold;color: green;">已通过</view>
+		<view class='order_explain'>{{item.add_time}}</view>
       <!--  / .order_area--></view>
     <!--  / .order_list--></view>
   <!--  / .order_block--></view>
 
   <view class="order_block {{ostate == 4 ? '' : 'tui-hide'}}">
      <view class='order_list' wx:for="{{orderostate4}}" wx:key="key" data-id='{{item.oid}}' bindtap='go_taskorderdetail'>
-      <image src='{{item.otaimg}}' mode='widthFix' />
       <view class='order_box' url="../task_ex/task_ex" hover-class="none">
-        <view class='order_title'>{{item.otatitle}}</view>
-        <view class='order_info'>
-		  <view class='order_caption' wx:for="{{item.lname}}" wx:for-item="lnameitem" wx:key="{{lnameitem}}">{{lnameitem}}</view>
-        <!--  / .order_info--></view>
+       <view class='order_title'>{{item.truename}}</view>
+       <view class='order_info'>{{item.shopname}}</view>
       <!--  / .order_box--></view>
       <view class='order_area'>
-        <view class='order_text'>未通过</view>
-        <view class='order_explain'>{{item.tareject}}</view>
+        <view class='order_text' style="font-weight: bold;color: red;">未通过</view>
+        <view class='order_explain'>{{item.add_time}}</view>
       <!--  / .order_area--></view>
     <!--  / .order_list--></view>
   <!--  / .order_block--></view>

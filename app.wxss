@@ -503,7 +503,7 @@ image {
 .personal_text {
   font-size: 30rpx;
   color: #333333;
-  width: 18%;
+  width: 20%;
 }
 .persoanal_info input {
   border: none;
@@ -553,9 +553,6 @@ image {
   justify-content: space-between;
   align-items: center;
 }
-.gong {
-  margin: 8px 0;
-} 
 .gong_banner {
   width: 90%;
 }

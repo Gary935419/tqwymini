@@ -2,26 +2,60 @@
 <view class="index">
   <view class='inner'>
     <view class='banner'>
-      <swiper autoplay="true" interval="2000" duration="500" class='swiper'>
-        <swiper-item wx:for="{{imglist}}" wx:key="key">
-          <image src='{{item.aimg}}' mode="widthFix" style='width:100%;height: 100%;' />
-        </swiper-item>
-      </swiper>
+	  <swiper indicator-dots="{{indicatorDots}}" 
+	  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true"> 
+	          <swiper-item wx:for="{{imglist}}" wx:key="key">
+	              <image src="{{item.aimg}}" class="slide-image" /> 
+	          </swiper-item> 
+	  </swiper>
     </view>
-    <form class='choose_form'>
-      <view class='choose_top'>
-        <button class='search_btu' bindtap="go_tasklistkey">
-          <image src='../../images/search.jpg' mode="widthFix" />
-        </button>
-        <input type='text' placeholder='任务标题' value='{{inputValue}}' name='keywords' bindinput='keyInput' />
-      <!--  / .choose_top--></view>
-    </form>
-    <view class='list'>
+	    <view class='gong'>
+	       <image src='../../images/ico1.jpg' mode="widthFix" style='width:8%;' />
+	       <view class='gong_banner'>
+	        <view class='scroll_view_border'>
+	            <view class="srcoll_view">
+			     	<text>{{noticelist}}</text>
+				</view>
+	        </view>
+	       </view>
+	    </view>
+	
+	    <view class='coupon' bindtap="go_shopinto">
+	      <image src='../../images/coupon.jpg' mode="widthFix" style='width:100%;' />
+	    <!--  / .coupon--></view>
+    <view class='list' style="margin-top: 10px;">
       <view class='list_item' hover-class="none" wx:for="{{classlist}}" wx:key="key" data-id="{{item.tid}}" bindtap="go_tasklist">
-        <image src='{{item.timg}}' mode="widthFix" style='width:100%;' />
+        <image src='{{item.timg}}' style='width:100%;height: 5.576087rem;border-radius: 10px;' />
         <view class='list_title'>{{item.tname}}</view>
-        <view class='list_text'>{{item.ttitle}}</view>
       </view>
     </view>
+	<view class="List-title-box">
+		<view class="title-box">
+				<view class="List-icon"></view>
+				<view class="List-title">严选商家</view>
+		</view>
+	</view>
+	<!-- 有结果 -->
+	 <view class='list'>
+	   <view class='list-bg'>
+	    <view class='list-item' wx:for="{{goodslist}}" wx:key="key" data-id='{{item.gid}}' bindtap='godetail'>
+	       <view class='list-img'>
+	         <image src='{{item.gimg}}'></image>
+	       </view>
+	       <view class='list-right'>
+	         <view class='list-tlt'>
+	           <!-- <image style="width: 50px;height: 20px;" src='../../images/csp.jpg'></image> -->
+			   {{item.gname}}
+	         </view>
+	         <text class='list-remark'>{{item.gtitle}}</text>
+	       </view>
+	     </view>
+	   </view>
+	 </view>
+	 <!-- 结果为空 -->
+	<view class='list-empty' wx:if="{{goodslist.length===0}}" hidden="{{empty_hidden}}">
+	   <image class='empty-img' src="../../images/empty.png"></image>
+	   <text>很抱歉，没有找到相关商家！</text>
+	 </view>
   </view>
 </view>

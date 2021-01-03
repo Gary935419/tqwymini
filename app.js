@@ -1,6 +1,6 @@
 //app.js
 App({
-  taskapi: 'http://www.task.com/index.php/api', //正式接口测试
+  taskapi: 'http://47.104.162.228/index.php/api', //正式接口测试
   onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -21,14 +21,10 @@ App({
     //商城用户信息
     memberInfo: [],
     token: [],
-	//类型id(首页跳转到任务大厅)
-	tid1: 0,
-	//关键字(首页跳转到任务大厅)
-	keywords: 0,
-	//排序
-	order: 0,
-	//订单状态
-	ostate:0,
+	//类型id
+	tid: 0,
+	//入驻申请状态
+	ostate: 0,
 	//推荐人id
 	sharemid:0,
   },

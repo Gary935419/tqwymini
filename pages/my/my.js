@@ -210,25 +210,22 @@ Page({
   },
   //跳转到订单审核中
   go_examine: function(e) {
-      app.globalData.ostate = 2;
-  	  console.log(app.globalData);
-      wx.switchTab({
+	  app.globalData.ostate = e.currentTarget.dataset.id;
+      wx.navigateTo({
   		    url: '/pages/order/order',
   	  });
   },
   //跳转到订单已通过
   go_adopt: function(e) {
-      app.globalData.ostate = 3;
-  	  console.log(app.globalData);
-      wx.switchTab({
+	  app.globalData.ostate = e.currentTarget.dataset.id;
+      wx.navigateTo({
   		    url: '/pages/order/order',
   	  });
   },
   //跳转到订单未通过
   go_adoptno: function(e) {
-      app.globalData.ostate = 4;
-  	  console.log(app.globalData);
-      wx.switchTab({
+	  app.globalData.ostate = e.currentTarget.dataset.id;
+      wx.navigateTo({
   		    url: '/pages/order/order',
   	  });
   },
@@ -281,10 +278,7 @@ Page({
   //判断是否已经授权
   wx.getSetting({
     success: res => {
-		app.globalData.tid1 = "";
-		app.globalData.keywords = "";
-		app.globalData.order = "";
-		app.globalData.ostate = 0;
+		app.globalData.tid = "";
       if (res.authSetting['scope.userInfo']) {
         //获取个人账户信息
         that.get_member_info();

@@ -1,1 +1,11 @@
 /* pages/personal/personal.wxss */
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo-wrapper image {
+    width: 300rpx;
+    height: 300rpx;
+}

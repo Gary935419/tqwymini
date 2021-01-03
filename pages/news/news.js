@@ -12,6 +12,7 @@ Page({
 	  list: [], //消息列表
 	  //第几页
 	  page: 1,
+	  empty_hidden: true,
   },
 
   /**
@@ -51,6 +52,12 @@ Page({
 			  hidden1: true,
 			  list: res.data.data.newslist,
 			})
+			//没有数据的时候，显示搜索结果为空
+			if (res.data.data.newslist == 0) {
+			  that.setData({
+			    empty_hidden: false,
+			  })
+			}
 		  } else {
 		    if (res.data.data.newslist.length == 0 && that.data.page > 1) {
 				if(that.data.list == ''){
@@ -58,6 +65,12 @@ Page({
 					  hidden: true,
 					  hidden1: false,
 					})
+				}
+				//没有数据的时候，显示搜索结果为空
+				if (res.data.data.newslist == 0) {
+				  that.setData({
+				    empty_hidden: false,
+				  })
 				}
 				  wx.showToast({
 					title: '已加载全部',
@@ -70,6 +83,12 @@ Page({
 				  hidden1: true,
 		          list: that.data.list.concat(res.data.data.newslist),
 		      })
+			  //没有数据的时候，显示搜索结果为空
+			  if (res.data.data.newslist == 0) {
+			    that.setData({
+			      empty_hidden: false,
+			    })
+			  }
 		    }
 		  }
         } else {

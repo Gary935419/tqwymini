@@ -2,26 +2,18 @@
   "pages": [
     "pages/index/index",
 	"pages/grant_login/grant_login",
-    "pages/task/task",
     "pages/order/order",
-    "pages/task_ex/task_ex",
-	"pages/task_ex1/task_ex",
     "pages/wan/wan",
-    "pages/yin/yin",
+	"pages/wanorder/wanorder",
 	"pages/gradeinfo/gradeinfo",
     "pages/news/news",
-	"pages/integral/integral",
-	"pages/wallet/wallet",
-	"pages/commission/commission",
-	"pages/withdrawal/withdrawal",
-	"pages/withdrawalcom/withdrawalcom",
 	"pages/customer/customer",
     "pages/personal/personal",
     "pages/my/my",
 	"pages/search_goods/search_goods",
 	"pages/goods_details/goods_details",
+	"pages/goods_type/goods_type",
 	"pages/myintegralgoods/myintegralgoods",
-	"pages/taskagent/taskagent",
 	"pages/share/share",
 	"pages/recommend/recommend",
 	"pages/wxpay/wxpay",
@@ -29,34 +21,27 @@
   ],
   "tabBar": {
     "borderStyle": "black",
-    "backgroundTextStyle": "red",
     "backgroundColor": "#ffffff",
     "color": "#444444",
     "selectedColor": "#38a1db",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/nav5.png",
-        "selectedIconPath": "images/nav1.png",
+        "iconPath": "images/nav1.png",
+        "selectedIconPath": "images/nav5.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/task/task",
+        "pagePath": "pages/goods_type/goods_type",
         "iconPath": "images/nav2.png",
         "selectedIconPath": "images/nav6.png",
-        "text": "任务"
+        "text": "商家"
       },
-	  {
-	    "pagePath": "pages/taskagent/taskagent",
-	    "iconPath": "images/nav4.png",
-	    "selectedIconPath": "images/nav8.png",
-	    "text": "代理"
-	  },
       {
-        "pagePath": "pages/order/order",
+        "pagePath": "pages/wan/wan",
         "iconPath": "images/nav3.png",
         "selectedIconPath": "images/nav7.png",
-        "text": "订单"
+        "text": "入驻"
       },
       {
         "pagePath": "pages/my/my",

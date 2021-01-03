@@ -1,36 +1,38 @@
 var app = getApp();
 var main = require("../../main.js");
-var WxParse = require('../../wxParse/wxParse.js');
 const config = app.globalData;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-  setinfo: [],
-  id:0,
-  imgUrl:'',
+	imgs:[],
+	imgslist:[],
+    taskdetails: [],
+	oid:"",
   },
-
   /**
-   * 获取个人账户信息
+   * 获取入驻申请信息
    */
-  get_set_info: function() {
+  get_shopdetail_info: function() {
     var that = this;
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
-      url: app.taskapi + '/Index/customercode',
+      url: app.taskapi + '/Task/taskorderdetails',
       method: 'post',
-      data: {
+      data: { 
         token: main.get_storage('token'),
+        oid: that.data.oid,
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        if (!main.checklogin(res, 'my')) {
+          return;
+        }
         if (!res.data) {
           wx.showToast({
             title: '加载错误',
@@ -40,40 +42,51 @@ Page({
         }
         if (res.data.errcode == '200') {
           wx.hideLoading();
-          that.setData({
-			setinfo: res.data.data.setinfo,
-			imgUrl:res.data.data.setinfo.customercode
-          })
-		  WxParse.wxParse('article', 'html', that.data.setinfo.contentnew, that, 5);
-		  WxParse.wxParse('article1', 'html', that.data.setinfo.contentagent, that, 5);
+    	  	that.setData({
+    	  	  taskdetails: res.data.data.taskdetails,
+    		  ostate: res.data.data.taskdetails.ostate,
+			  imgs: res.data.data.taskdetails.imgs,
+			  imgslist: res.data.data.taskdetails.imgslist
+    	  	})
         } else {
-			  wx.showToast({
-				title: res.data.errmsg,
-				icon: 'none',
-				duration: 3000
-			  })
+			wx.hideLoading();
+			wx.showModal({
+			  title: '温馨提示',
+			  content: res.data.errmsg,
+			  showCancel: false,
+			  success: function(res) {
+				if (res.confirm) {
+				  wx.navigateTo({
+					url: '/pages/order/order',
+				  })
+				}
+			  }
+			});
         }
-      },
-	  fail: function(res) {
-           that.get_set_info();
-      },
+      }
     })
   },
-  previewImg:function(){
-        var imgUrl = this.data.imgUrl;
-        wx.previewImage({
-          urls: [imgUrl], //需要预览的图片http链接列表，注意是数组
-          current: '', // 当前显示图片的http链接，默认是第一个
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
-        })
-    },
+  // 预览图片
+  previewImg(e) {
+    //获取当前图片的下标
+    let index = e.currentTarget.dataset.index;
+    //所有图片
+    let imgs = this.data.imgslist;
+    wx.previewImage({
+      //当前显示图片
+      current: imgs[index],
+      //所有图片
+      urls: imgs
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+	var that = this;
+	that.setData({                             
+	oid: options.oid,     
+	})
   },
 
   /**
@@ -87,8 +100,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  var that = this;
-  that.get_set_info();
+	  var that = this;
+	  //判断是否已经授权
+	  wx.getSetting({
+		success: res => {
+			app.globalData.tid = "";
+		  if (res.authSetting['scope.userInfo']) {
+			that.get_shopdetail_info();
+		  } else {
+			that.setData({
+			  taskdetails: [],
+			})
+		  }
+		}
+	  })
   },
 
   /**

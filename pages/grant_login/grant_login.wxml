@@ -1,21 +1,14 @@
 <view wx:if="{{flag}}">
     <view wx:if="{{canIUse}}" >
         <view class='header'>
-           <image src='../../images/default1.jpg'></image>
+           <image src='../../images/tqwy.png'></image>
         </view>
-		 <view class="tui-picker-content">
-		   <view class="tui-picker-name" style="color: red;">注意:请先完善您的城市信息!</view>
-		   <picker bindchange="changeCountry"  value="{{countryIndex}}" range="{{countryList}}">
-				<view class="tui-picker-detail">{{countryList[countryIndex]}}</view>
-		   </picker>
-		 </view>
         <view class='content'>
             <view>申请获取以下权限</view>
             <text>获得你的公开信息(昵称，头像等)</text>
         </view>
-		
         <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-            授权登录
+            微信用户一键授权登录
         </button>
 		<button style="background-color: #ccc;" class='bottom' type='primary' lang="zh_CN" bindtap="bindGetUserInfoback">
 		    取消授权

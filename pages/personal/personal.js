@@ -73,6 +73,22 @@ Page({
 	   wx.showLoading({
 	     title: '加载中',
 	   })
+	   if (!main.isMobile(e.detail.value.mobile)) {
+	     wx.showToast({
+			title: '请输入正确的手机号!',
+			icon: 'none',
+			duration: 3000
+	     })
+	     return false;
+	   }
+	   if (!main.isEmail(e.detail.value.email)) {
+	     wx.showToast({
+			title: '请输入正确的邮箱地址!',
+			icon: 'none',
+			duration: 3000
+	     })
+	     return false;
+	   }
 	   wx.request({
 	     url: app.taskapi + '/Index/memberupdatainfo',
 	     method: 'post',

@@ -7,14 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    /**
-     * 图片
-     */
     imgs: [],
-    list: '',
     upload_picture_list: [],
-	content:'',
-	oid:'',
+	content:'', //详细说明
+	address:'', //详细地址
+	email:'', //邮箱地址
+	shopname:'', //商家名称
+	mobile:'', //电话号码
+	truename:'', //真实姓名
 	id:0,
   },
   //失去焦点获得文本域里的内容
@@ -24,6 +24,41 @@ Page({
 		  content:e.detail.value
 	  })
 	  console.log(e.detail.value);
+  },
+  addressInput:function(e){
+  	  var that = this;
+  	  that.setData({
+  		  address:e.detail.value
+  	  })
+  	  console.log(e.detail.value);
+  },
+  emailInput:function(e){
+  	  var that = this;
+  	  that.setData({
+  		  email:e.detail.value
+  	  })
+  	  console.log(e.detail.value);
+  },
+  shopnameInput:function(e){
+  	  var that = this;
+  	  that.setData({
+  		  shopname:e.detail.value
+  	  })
+  	  console.log(e.detail.value);
+  },
+  mobileInput:function(e){
+  	  var that = this;
+  	  that.setData({
+  		  mobile:e.detail.value
+  	  })
+  	  console.log(e.detail.value);
+  },
+  truenameInput:function(e){
+  	  var that = this;
+  	  that.setData({
+  		  truename:e.detail.value
+  	  })
+  	  console.log(e.detail.value);
   },
   //选择图片方法
   uploadpic: function (e) {
@@ -82,9 +117,49 @@ gouploadimage() {
  	  })
  	  return false;
  	}
+	if (page.data.truename == '') {
+	  wx.showToast({
+		title: '请填写您的联系姓名!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
+	if (page.data.mobile == '') {
+	  wx.showToast({
+		title: '请填写您的联系电话!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
+	if (page.data.shopname == '') {
+	  wx.showToast({
+		title: '请填写您的商家名称!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
+	if (page.data.email == '') {
+	  wx.showToast({
+		title: '请填写您的邮箱地址!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
+	if (page.data.address == '') {
+	  wx.showToast({
+		title: '请填写您的详细地址!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
  	if (page.data.content == '') {
  	  wx.showToast({
- 		title: '请填写您的任务备注!',
+ 		title: '请填写您的详细说明!',
  		icon: 'none',
  		duration: 3000
  	  })
@@ -92,20 +167,40 @@ gouploadimage() {
  	}
  	if (page.data.upload_picture_list == '') {
  	  wx.showToast({
- 		title: '请上传任务截图!',
+ 		title: '请上传资质图片!',
  		icon: 'none',
  		duration: 3000
  	  })
  	  return false;
  	}
+	if (!main.isMobile(page.data.mobile)) {
+	  wx.showToast({
+		title: '请输入正确的手机号!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
+	if (!main.isEmail(page.data.email)) {
+	  wx.showToast({
+		title: '请输入正确的邮箱地址!',
+		icon: 'none',
+		duration: 3000
+	  })
+	  return false;
+	}
     wx.request({
 	  url: app.taskapi + '/task/sendexamine',
 	  method: 'post',
 	  data: {
-		token: main.get_storage('token'),
-			   oid: page.data.oid,
-			   content: page.data.content,
-			   upload_picture_list: JSON.stringify(page.data.upload_picture_list),
+		   token: main.get_storage('token'),
+		   truename: page.data.truename,
+		   mobile: page.data.mobile,
+		   shopname: page.data.shopname,
+		   email: page.data.email,
+		   address: page.data.address,
+		   content: page.data.content,
+		   upload_picture_list: JSON.stringify(page.data.upload_picture_list),
 	  },
 	  header: {
 		'content-type': 'application/x-www-form-urlencoded'
@@ -126,27 +221,28 @@ gouploadimage() {
 		  page.setData({
 			id:1,
 		  });
-		  wx.showToast({
-					title: res.data.errmsg,
-					icon: 'none',
-					duration: 2000
-		   })
-		setTimeout(function () {
-			wx.navigateTo({
-			  url: '/pages/task_ex1/task_ex?oid='+page.data.oid,
-			});
-		}, 2000)
+			wx.showToast({
+				title: '您的申请已提交，我们工作人员会在12小时内跟您联系！',
+				icon: 'none',
+				duration: 2000
+			})
+			setTimeout(function () {
+				app.globalData.ostate = 2;
+				wx.redirectTo({
+				  	url: '/pages/order/order',
+				});
+			}, 3000)
 		} else {
 			  wx.showToast({
 				title: res.data.errmsg,
 				icon: 'none',
 				duration: 2000
 			  })
-		  setTimeout(function () {
-			wx.navigateTo({
-			  url: '/pages/task_ex1/task_ex?oid='+page.data.oid,
-			});
-		  }, 2000)
+			  setTimeout(function () {
+			  	wx.reLaunch({
+			  	  	url: '/pages/wan/wan',
+			  	});
+			  }, 3000)
 		}
 	  }
 	})
@@ -166,6 +262,7 @@ gouploadimage() {
     let index = e.currentTarget.dataset.index;
     //所有图片
     let imgs = this.data.imgs;
+	console.log(imgs);
     wx.previewImage({
       //当前显示图片
       current: imgs[index],
@@ -177,10 +274,7 @@ gouploadimage() {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	var that = this;
-	that.setData({                             
-	  oid: options.oid,     
-	})
+	
   },
 
   /**
@@ -194,7 +288,38 @@ gouploadimage() {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+  var that = this;
+  //判断是否已经授权
+  wx.getSetting({
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        
+      } else {
+        wx.showModal({
+                 title: '温馨提示',
+                 content: '当前您未授权,是否立即去授权?',
+                 showCancel: true,//是否显示取消按钮
+                 cancelText:"否",//默认是“取消”
+                 cancelColor:'#111111',//取消文字的颜色
+                 confirmText:"是",//默认是“确定”
+                 confirmColor: '#111111',//确定文字的颜色
+                 success: function (res) {
+                    if (res.cancel) {
+                       wx.switchTab({
+                             url: '/pages/my/my',
+                           });
+                    } else {
+        			   wx.navigateTo({
+        				 url: '/pages/grant_login/grant_login?path=my',
+        			   })
+                    }
+                 },
+                 // fail: function (res) { },//接口调用失败的回调函数
+                 // complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+        });
+      }
+    }
+  })
   },
 
   /**

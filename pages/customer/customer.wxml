@@ -1,5 +1,40 @@
-
-<view class='order_none' wx:if="{{setinfo.customercode!=''}}">
-<image src='{{setinfo.customercode}}' data-src='{{setinfo.customercode}}' mode='widthFix' bindtap='previewImg' style='width:60%' />
-</view>
-
+<import src="../../wxParse/wxParse.wxml" />
+<view class='logo-wrapper'>
+         <image src='../../images/tqwy.png'></image>
+ </view>
+<view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>联系人：</view>
+   <text>\n</text>
+   <text>{{setinfo.name}}</text>
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+    <view class='wan_text'>联系邮箱：</view>
+    <text>\n</text>
+    <text>{{setinfo.email}}</text>
+  </view>
+  <view class='wan_info' style="padding-left: 14px;padding-right: 14px;" wx:if="{{setinfo.customercode!=''}}">
+     <view class='wan_text'>微信客服：</view>
+     <text>\n</text>
+     <image src='{{setinfo.customercode}}' data-src='{{setinfo.customercode}}' mode='widthFix' bindtap='previewImg' style='width:60%' />
+   </view>
+<view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>联系地址：</view>
+   <text>\n</text>
+   <text>{{setinfo.address}}</text>
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>详细说明：</view>
+   <text>\n</text>
+   <!-- <text>{{setinfo.contentnew}}</text> -->
+   <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+ </view>
+<view class='wan_info' style="padding-left: 14px;padding-right: 14px;margin-bottom: 3.125rem;">
+   <view class='wan_text'>主营业务：</view>
+   <text>\n</text>
+   <!-- <text>{{setinfo.contentagent}}</text> -->
+   <template is="wxParse" data="{{wxParseData:article1.nodes}}" />
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;margin-bottom: 3.125rem;">
+    <view class='wan_text'></view>
+    <text>\n</text>
+  </view>

@@ -1,0 +1,52 @@
+ <view class="wan1">
+ <view class='logo-wrapper'>
+         <image src='../../images/tqwy.png'></image>
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>姓名</view>
+   <input type='text' name="truename" value="{{taskdetails.truename}}" disabled="true"/>
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>电话号</view>
+   <input type='text' name="mobile" value="{{taskdetails.mobile}}" disabled="true"/>
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>商家名称</view>
+   <input type='text' name="shopname" value="{{taskdetails.shopname}}" disabled="true"/>
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>邮箱地址</view>
+   <input type='text' name="email" value="{{taskdetails.email}}" disabled="true"/>
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>详细地址</view>
+   <text>\n</text>
+   <text>{{taskdetails.address}}</text>
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>详细说明</view>
+   <text>\n</text>
+   <text>{{taskdetails.content}}</text>
+ </view>
+ <view class="picture_list" style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>资质图片</view>
+   <view wx:for="{{imgs}}" class="picture_item" wx:key="key">
+     <image src="{{item.oiimg}}" mode="aspectFill"></image>
+     <view class="upload_progress" data-index="{{index}}" bindtap="previewImg"></view>
+   </view>
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;">
+   <view class='wan_text'>审核信息回馈</view>
+   <text>\n</text>
+   <text>{{taskdetails.tareject}}</text>
+ </view>
+ <view wx:if="{{ taskdetails.ostate == 2 }}">
+	  <button class='yes-upload' style="background-color: #FF820B;">后台正在为您审核，请耐心等待。</button>
+ </view>
+ <view wx:if="{{ taskdetails.ostate == 3}}" >
+	 <button class='yes-upload' style="background-color: green;">恭喜您，审核已经通过。</button>
+ </view>
+ <view wx:if="{{ taskdetails.ostate == 4}}">
+	 <button class='yes-upload' style="background-color: red;">抱歉，您的审核没有通过。</button>
+ </view>
+</view>

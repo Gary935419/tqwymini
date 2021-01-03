@@ -14,22 +14,22 @@
     <view class='pro_name'>
       <text class='details_name'>{{goodsdetails.gname}}</text>
     </view>
-    <view class='pro_price'>
-      <text>积分:</text>{{goodsdetails.gintegral}}</view>
-    <view class='pro_describe'>
-      <text class='kucun'><text>库存:</text>{{goodsdetails.gstock}}个</text>
-      <!-- <text class="mpq"><text>销量:</text>34</text> -->
-    </view>
+	<view class='pro_describe'>
+	  <text class='kucun'>{{goodsdetails.gtitle}}</text>
+	</view>
+    <view class='pro_price' style="margin-top: 30rpx;">
+      <text>温馨提示：本平台免费查询商家信息，提供免费商家信息支持，提交服务订单与商家进行详细沟通价格、服务内容、售后等问题。</text>
+	</view>
   </view>
   <view class='pro_content'>
-    <view class='pro_title'>商品描述</view>
+    <view class='pro_title'>商家介绍</view>
     <view class='pro_parameter width_box' class="width_pic">
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
   </view>
   <view class='footer_fix'>
     <view class='footer_btn'>
-      <button class='details_btn col-0068c6' bindtap='goOrder'>立即兑换</button>
+      <button class='details_btn col-0068c6' bindtap='goOrder'>下单咨询</button>
     </view>
   </view>
 </view>

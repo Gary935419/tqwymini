@@ -6,14 +6,15 @@
       <view class='news_item'>
 		<view class='news_title'>系统推送</view>
         <view class='news_text'>{{item.ncontent}}</view>
+		<view class='news_text' style="margin-top: 10px;">{{item.add_time}}</view>
       </view>
     </view>
 	
-	<view class='news_list' hidden='{{hidden1}}'>
-	  <view class='news_item' style="text-align: center;margin-top: 0.75rem;">
-		<view class='news_title'>暂无数据</view>
-	  </view>
-	</view>
+	<!-- 结果为空 -->
+	<view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
+	   <image class='empty-img' src="../../images/empty.png"></image>
+	   <text>很抱歉，没有找到相关消息信息！</text>
+	 </view>
   </view>
 </view>
 

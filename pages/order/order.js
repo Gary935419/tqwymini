@@ -18,32 +18,25 @@ Page({
 	page: 1,
   },
   changeTabbar(e) {
-    this.setData({
-      ostate:e.currentTarget.dataset.id,
-	  page: 1,
-    })
-  },
-  //状态更新当前页面
-  go_orderlistnew: function(e) {
-  		var that = this;
-  		that.setData({
-  		  ostate: e.currentTarget.dataset.id,
-		  page: 1,
-  		}),
-		console.log(e.currentTarget.dataset.id);
-  		app.globalData.ostate = e.currentTarget.dataset.id;
-  		that.getorderlist();
+    var that = this;
+    that.setData({
+      ostate: e.currentTarget.dataset.id,
+      page: 1,
+    }),
+    console.log(e.currentTarget.dataset.id);
+    app.globalData.ostate = e.currentTarget.dataset.id;
+    that.getorderlist();
   },
   //跳转到任务大厅
   go_tasklist: function(e) {
       wx.switchTab({
-  		    url: '/pages/task/task',
+  		    url: '/pages/wan/wan',
   	  });
   },
   //跳转到订单详情
   go_taskorderdetail: function(e) {
   wx.navigateTo({
-    url: '/pages/task_ex1/task_ex?oid='+e.currentTarget.dataset.id,
+    url: '/pages/wandetal/wandetal?oid='+e.currentTarget.dataset.id,
   });
   },
   //获得任务
@@ -78,19 +71,6 @@ Page({
 			if (that.data.ostate == 0) {
 				if (res.data.data.orderall.length == 0) {
 					if (that.data.orderall == '') {
-						that.setData({
-						  init_hidden: false,
-						});
-					}
-				}else{
-					that.setData({
-					  init_hidden: true,
-					});
-				}
-			}
-			if(that.data.ostate == 1){
-				if (res.data.data.orderostate1.length == 0) {
-					if (that.data.orderostate1 == '') {
 						that.setData({
 						  init_hidden: false,
 						});
@@ -143,7 +123,6 @@ Page({
 			if (that.data.page == 1) {
 			  that.setData({
 			    orderall: res.data.data.orderall,
-			    orderostate1: res.data.data.orderostate1,
 			    orderostate2: res.data.data.orderostate2,
 			    orderostate3: res.data.data.orderostate3,
 			    orderostate4: res.data.data.orderostate4,
@@ -159,24 +138,6 @@ Page({
 					} else {
 					  that.setData({
 					  orderall: that.data.orderall.concat(res.data.data.orderall),
-					  orderostate1: res.data.data.orderostate1,
-					  orderostate2: res.data.data.orderostate2,
-					  orderostate3: res.data.data.orderostate3,
-					  orderostate4: res.data.data.orderostate4,
-					  })
-					}
-				}
-				if(that.data.ostate == 1){
-					if (res.data.data.orderostate1.length == 0 && that.data.page > 1) {
-					  wx.showToast({
-						title: '已加载全部',
-						icon: 'none',
-						duration: 1000
-					  })
-					} else {
-					  that.setData({
-					  orderall: res.data.data.orderall,
-					  orderostate1: that.data.orderostate1.concat(res.data.data.orderostate1),
 					  orderostate2: res.data.data.orderostate2,
 					  orderostate3: res.data.data.orderostate3,
 					  orderostate4: res.data.data.orderostate4,
@@ -193,7 +154,6 @@ Page({
 					} else {
 					  that.setData({
 					  orderall: res.data.data.orderall,
-					  orderostate1: res.data.data.orderostate1,
 					  orderostate2: that.data.orderostate2.concat(res.data.data.orderostate2),
 					  orderostate3: res.data.data.orderostate3,
 					  orderostate4: res.data.data.orderostate4,
@@ -210,7 +170,6 @@ Page({
 					} else {
 					  that.setData({
 					  orderall: res.data.data.orderall,
-					  orderostate1: res.data.data.orderostate1,
 					  orderostate2: res.data.data.orderostate2,
 					  orderostate3: that.data.orderostate3.concat(res.data.data.orderostate3),
 					  orderostate4: res.data.data.orderostate4,
@@ -227,7 +186,6 @@ Page({
 					} else {
 					  that.setData({
 					  orderall: res.data.data.orderall,
-					  orderostate1: res.data.data.orderostate1,
 					  orderostate2: res.data.data.orderostate2,
 					  orderostate3: res.data.data.orderostate3,
 					  orderostate4: that.data.orderostate4.concat(res.data.data.orderostate4),
@@ -235,7 +193,6 @@ Page({
 					}
 				}
 			}
-
   	      } else {
   	  		  wx.showToast({
   	  			title: res.data.errmsg,
@@ -250,7 +207,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+	  
   },
 
   /**
@@ -275,7 +232,7 @@ Page({
 		that.setData({
 		  ostate: app.globalData.ostate,
 		}),
-         that.getorderlist();
+        that.getorderlist();
       } else {
         wx.showModal({
                  title: '温馨提示',

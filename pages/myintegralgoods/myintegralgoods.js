@@ -7,7 +7,7 @@ Page({
    */
   data: {
     nav: {
-      title: '我的兑换', //页面标题
+      title: '合作申请', //页面标题
       back: true, //是否有返回按钮
       home: true, //是否有首页按钮
     },
@@ -26,9 +26,6 @@ Page({
    */
   get_goods_list: function() {
     var that = this;
-    wx.showLoading({
-      title: '加载中',
-    })
     //调用接口请求数据
     wx.request({
        url: app.taskapi + '/Task/mygoodslist',
@@ -74,12 +71,6 @@ Page({
               })
             }
           }
-        } else {
-          wx.showToast({
-            title: res.data.errmsg,
-            icon: 'none',
-            duration: 3000
-          })
         }
         that.setData({
           inithidden: true,
@@ -108,7 +99,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+var that = this;
+  //判断是否已经授权
+  wx.getSetting({
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        
+      } else {
+        wx.showModal({
+                 title: '温馨提示',
+                 content: '当前您未授权,是否立即去授权?',
+                 showCancel: true,//是否显示取消按钮
+                 cancelText:"否",//默认是“取消”
+                 cancelColor:'#111111',//取消文字的颜色
+                 confirmText:"是",//默认是“确定”
+                 confirmColor: '#111111',//确定文字的颜色
+                 success: function (res) {
+                    if (res.cancel) {
+                       wx.switchTab({
+                             url: '/pages/my/my',
+                           });
+                    } else {
+        			   wx.navigateTo({
+        				 url: '/pages/grant_login/grant_login?path=my',
+        			   })
+                    }
+                 },
+        });
+      }
+    }
+  })
   },
 
   /**

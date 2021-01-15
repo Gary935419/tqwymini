@@ -1,6 +1,6 @@
 //app.js
 App({
-  taskapi: 'http://47.104.162.228/index.php/api', //正式接口测试
+  taskapi: 'https://dltqwy.com/index.php/api', //正式接口测试
   onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

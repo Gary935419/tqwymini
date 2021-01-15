@@ -124,7 +124,6 @@
 
 .kucun, .mpq {
   display: inline-block;
-  width: 50%;
   color: #595959;
 }
 

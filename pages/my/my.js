@@ -109,7 +109,7 @@ Page({
     })
   },
   /**
-   * 跳转到积分商城页面
+   * 跳转到商家页面
    */
   go_integralgoods: function() {
     var that = this;
@@ -118,12 +118,30 @@ Page({
     })
   },
   /**
-   * 跳转到我的兑换页面
+   * 跳转到商品页面
+   */
+  go_items: function() {
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/search_items/search_items?path=' + that.data.back_path,
+    })
+  },
+  /**
+   * 跳转到我的兑换页面商家
    */
   go_myintegralgoods: function() {
     var that = this;
     wx.navigateTo({
       url: '/pages/myintegralgoods/myintegralgoods?path=' + that.data.back_path,
+    })
+  },
+  /**
+   * 跳转到我的兑换页面商品
+   */
+  go_myintegralitems: function() {
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/myintegralitems/myintegralitems?path=' + that.data.back_path,
     })
   },
   /**

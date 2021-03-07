@@ -1,0 +1,16 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}"></navigationBar>
+<!--分类导航栏-->
+<scroll-view class='left-navbar' scroll-y="true">
+  <view wx:for="{{classifylist}}" class="nav_left_items {{item.id == gc_id? 'active' : ''}}" wx:key="key" bindtap="chose_class" data-id="{{item.id}}">{{item.cname}}
+  </view>
+</scroll-view>
+
+<scroll-view id="right" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltolower="bindDownLoad">
+  <view class="goods-list">
+    <view wx:for='{{goods_lists}}' class="goods" style="height: 11.75rem;" wx:key="key" bindtap="godetail" data-id="{{item.id}}">
+      <image class="img" style="height: 10.375rem;" wx:if='{{item.img}}' src="{{item.img}}"></image>
+      <text class="g_name" wx:if='{{item.ename}}'>{{item.ename}}</text>
+      <text class="g_price" wx:if='{{item.batchprice}}'>{{item.batchprice}}</text>
+    </view>
+  </view>
+</scroll-view>

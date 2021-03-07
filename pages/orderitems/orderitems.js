@@ -9,7 +9,7 @@ Page({
   data: {
 	content:'', //详细说明
 	email:'', //邮箱地址
-	gname:'', //商家名称
+	ename:'', //商家名称
 	mobile:'', //电话号码
 	truename:'', //真实姓名
 	gid:'',
@@ -44,7 +44,7 @@ Page({
   	  })
   	  console.log(e.detail.value);
   },
- //点击上传图片
+ //点击提交申请
 gouploadimage() {
    let page = this
  	if (page.data.id == 1) {
@@ -71,9 +71,9 @@ gouploadimage() {
 	  })
 	  return false;
 	}
-	if (page.data.gname == '') {
+	if (page.data.ename == '') {
 	  wx.showToast({
-		title: '请填写您的商家名称!',
+		title: '请填写您的商品名称!',
 		icon: 'none',
 		duration: 3000
 	  })
@@ -89,7 +89,7 @@ gouploadimage() {
 	}
  	if (page.data.content == '') {
  	  wx.showToast({
- 		title: '请填写您的合作事宜!',
+ 		title: '请填写您的合作意向!',
  		icon: 'none',
  		duration: 3000
  	  })
@@ -112,13 +112,13 @@ gouploadimage() {
 	  return false;
 	}
     wx.request({
-	  url: app.taskapi + '/task/sendgoods',
+	  url: app.taskapi + '/task/itemsordergo',
 	  method: 'post',
 	  data: {
 		   token: main.get_storage('token'),
 		   truename: page.data.truename,
 		   mobile: page.data.mobile,
-		   shopname: page.data.gname,
+		   ename: page.data.ename,
 		   email: page.data.email,
 		   content: page.data.content,
 		   gid: page.data.gid,
@@ -149,7 +149,7 @@ gouploadimage() {
 			})
 			setTimeout(function () {
 				wx.redirectTo({
-				  	url: '/pages/myintegralgoods/myintegralgoods',
+				  	url: '/pages/myintegralitems/myintegralitems',
 				});
 			}, 3000)
 		} else {
@@ -174,7 +174,7 @@ gouploadimage() {
 	var that = this;
 	that.setData({                             
 		gid: options.gid,
-		gname: options.gname,
+		ename: options.ename,
 	})
   },
 

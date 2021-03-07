@@ -1,0 +1,71 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}" back_path="{{back_path}}"></navigationBar>
+<import src="../../wxParse/wxParse.wxml" />
+<view class='pages' hidden="{{init_hidden}}">
+  <view class='pro_img swiper-bg'>
+    <swiper circular="true" class='swiper_box' indicator-dots="false" autoplay="false" interval="5000" duration="1000">
+		<block wx:for="{{imgUrls}}" wx:key="key">
+		  <swiper-item>
+		    <image src="{{item.img}}" class="slide-image" width="750" height="330" />
+		  </swiper-item>
+		</block>
+    </swiper>
+  </view>
+  <view class='pro_message'>
+    <view class='pro_name'>
+      <text class='details_name'>{{goodsdetails.ename}}</text>
+    </view>
+	<!-- <view class='pro_name'>
+	  <view style="margin-left: 15rpx;">价格：<span style="margin-left: 50rpx;color: red;">￥{{goodsdetails.unitprice}}</span> <span style="margin-left: 50rpx;color: red;" wx:if="{{goodsdetails.batchprice != null}}">￥{{goodsdetails.batchprice}}</span> <span style="margin-left: 50rpx;color: red;" wx:if="{{goodsdetails.topprice != null}}">￥{{goodsdetails.topprice}}</span></view>
+	  <view style="margin-top: 25rpx;">订货量：<span style="margin-left: 60rpx;">{{goodsdetails.unitnums}}</span> <span style="margin-left: 70rpx;" wx:if="{{goodsdetails.batchnums != null}}">{{goodsdetails.batchnums}}</span> <span style="margin-left: 80rpx;" wx:if="{{goodsdetails.topnums != null}}">{{goodsdetails.topnums}}</span></view>
+	</view> -->
+	<view class="table">
+	 <block>
+	 <view class="tr bg-g">
+	 <view class="td">价格</view>
+	 <view class="td" style="color: red;">￥{{goodsdetails.unitprice}}</view>
+	 <view class="td" style="color: red;" wx:if="{{goodsdetails.batchprice != null}}">￥{{goodsdetails.batchprice}}</view>
+	 <view class="td" style="color: red;" wx:if="{{goodsdetails.topprice != null}}">￥{{goodsdetails.topprice}}</view>
+	 </view>
+	 <view class="tr bg-g">
+	 <view class="td">订货量</view>
+	 <view class="td">{{goodsdetails.unitnums}}</view>
+	 <view class="td" wx:if="{{goodsdetails.batchnums != null}}">{{goodsdetails.batchnums}}</view>
+	 <view class="td" wx:if="{{goodsdetails.topnums != null}}">{{goodsdetails.topnums}}</view>
+	 </view>
+	 </block>
+	</view>
+	<view class='pro_describe'>
+	  <text class='kucun'>供货总量：{{goodsdetails.sumnums}}</text>
+	</view>
+	<view class='pro_describe'>
+	  <text class='kucun'>产地：{{goodsdetails.place}}</text>
+	</view>
+	<view class='pro_describe'>
+	  <text class='kucun'>发货期：{{goodsdetails.delivery}}</text>
+	</view>
+    <view class='pro_price' style="margin-top: 30rpx;">
+      <text>温馨提示：本平台免费查询商品信息，提供免费商品信息支持，提交服务订单与商家进行详细沟通价格、服务内容、售后等问题。</text>
+	</view>
+  </view>
+  <view class='pro_content' style="margin-bottom: 20rpx;">
+    <view class='pro_title' style="text-align: center;font-size: 38rpx;"> - 商品参数 - </view>
+    <view class='pro_parameter width_box' class="width_pic">
+      <template is="wxParse" data="{{wxParseData:article1.nodes}}" />
+    </view>
+  </view>
+  <view class='pro_content'>
+    <view class='pro_title' style="text-align: center;font-size: 38rpx;"> - 商品介绍 - </view>
+    <view class='pro_parameter width_box' class="width_pic">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+  <view class='footer_fix'>
+    <view class='footer_btn'>
+      <button class='details_btn col-0068c6' style="background-color: #ff9800;" bindtap='goInterset'>感兴趣</button>
+	  <button class='details_btn col-0068c6' bindtap='goOrder'>下单咨询</button>
+    </view>
+  </view>
+</view>
+<modal hidden="{{hiddenmodalput}}" title="联系电话" confirm-text="确认" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+   <input type='number' bindinput='mobileInput' placeholder="请输入手机号" auto-focus/>  
+</modal> 

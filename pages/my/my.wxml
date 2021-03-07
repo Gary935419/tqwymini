@@ -57,29 +57,42 @@
     <view class='my_section'>
       <view class='my_title'>服务中心</view>
       <view class='my_area'>
-        <view class='my_link' hover-class="none" bindtap='go_integralgoods'>
-          <image src='../../images/shopnew.png' mode="widthFix" style='width:40%;' />
-          <view class='my_link_text'>严选商家</view>
-        </view>
-        <view class='my_link' hover-class="none" bindtap='go_myintegralgoods'>
-          <image src='../../images/exchange.png' mode="widthFix" style='width:40%;' />
-          <view class='my_link_text'>合作申请</view>
-        </view>
-        <view class='my_link' hover-class="none" bindtap='go_set'>
-          <image src='../../images/my12.png' mode="widthFix" style='width:40%;' />
-          <view class='my_link_text'>完善信息</view>
-        </view>
+		<view class='my_link' hover-class="none" bindtap='go_items'>
+		  <image src='../../images/exchange.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>严选商品</view>
+		</view>
+		<view class='my_link' hover-class="none" bindtap='go_myintegralitems'>
+		  <image src='../../images/goods.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>合作商品</view>
+		</view>
+		<view class='my_link' hover-class="none" bindtap='go_integralgoods'>
+		  <image src='../../images/shopnew.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>严选商家</view>
+		</view>
+		<view class='my_link' hover-class="none" bindtap='go_myintegralgoods'>
+		  <image src='../../images/shop.png' mode="widthFix" style='width:40%;' />
+		  <view class='my_link_text'>合作商家</view>
+		</view>
+      </view>
+    </view>
+	
+	<view class='my_section'>
+	  <view class='my_title'>个人服务</view>
+	  <view style="display: flex;align-items: center;">
+	    <view class='my_link' hover-class="none" bindtap='go_set'>
+	      <image src='../../images/information.png' mode="widthFix" style='width:40%;' />
+	      <view class='my_link_text'>完善信息</view>
+	    </view>
 		<!-- <view class='my_link' hover-class="none" bindtap='go_share'>
 		  <image src='../../images/my9.png' mode="widthFix" style='width:40%;' />
 		  <view class='my_link_text'>推荐人</view>
 		</view> -->
 		<view class='my_link' hover-class="none" bindtap='go_customercode'>
-		  <image src='../../images/img123.png' mode="widthFix" style='width:40%;' />
+		  <image src='../../images/company.png' mode="widthFix" style='width:40%;' />
 		  <view class='my_link_text'>联系我们</view>
 		</view>
-      </view>
-    </view>
-
+	  </view>
+	</view>
     <view class='blank20'></view>
   </view>
 </view>

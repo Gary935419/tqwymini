@@ -35,16 +35,16 @@ Page({
    */
   godetail: function(e) {
     wx.navigateTo({
-      url: '../goods_details/goods_details?gid=' + e.currentTarget.dataset.id,
+      url: '../items_details/items_details?gid=' + e.currentTarget.dataset.id,
     })
   },
-  //跳转到商家大厅
+  //跳转到商品大厅
   go_tasklist: function(e) {
 	  console.log(e.currentTarget.dataset.id);
-      app.globalData.tid = e.currentTarget.dataset.id;
+      app.globalData.cid = e.currentTarget.dataset.id;
 	  console.log(app.globalData);
       wx.switchTab({
-  		    url: '/pages/goods_type/goods_type'
+  		    url: '/pages/items_type/items_type'
   	  });
   },
   //跳转到商家入驻
@@ -105,7 +105,7 @@ Page({
     })
     //调用接口请求数据
     wx.request({
-       url: app.taskapi + '/Task/goodslist',
+       url: app.taskapi + '/Task/itemslist',
       method: 'POST',
       data: {
         pageNumber: that.data.page,
@@ -145,7 +145,7 @@ Page({
               })
             } else {
               that.setData({
-                goodslist: that.data.list.concat(res.data.data.goodslist),
+                goodslist: that.data.goodslist.concat(res.data.data.goodslist),
               })
             }
           }
@@ -208,7 +208,7 @@ Page({
   	    title: '加载中',
   	  })
   	  wx.request({
-  	    url: app.taskapi + '/Index/indexclasslist',
+  	    url: app.taskapi + '/Index/indexitemsclasslist',
   	    method: 'post',
   	    data: { 
   	      token: main.get_storage('token'),

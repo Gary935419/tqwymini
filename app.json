@@ -11,7 +11,11 @@
     "pages/personal/personal",
     "pages/my/my",
 	"pages/search_goods/search_goods",
+	"pages/search_items/search_items",
 	"pages/goods_details/goods_details",
+	"pages/items_details/items_details",
+	"pages/items_type/items_type",
+	"pages/orderitems/orderitems",
 	"pages/goods_type/goods_type",
 	"pages/myintegralgoods/myintegralgoods",
 	"pages/share/share",
@@ -31,6 +35,12 @@
         "selectedIconPath": "images/nav5.png",
         "text": "首页"
       },
+	  {
+	    "pagePath": "pages/items_type/items_type",
+	    "iconPath": "images/nav2.png",
+	    "selectedIconPath": "images/nav6.png",
+	    "text": "商品"
+	  },
       {
         "pagePath": "pages/goods_type/goods_type",
         "iconPath": "images/nav2.png",

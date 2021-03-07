@@ -1,0 +1,66 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}"></navigationBar>
+<view class='content'>
+  <!-- 有结果 -->
+  <view class='list'>
+    <view class='list-bg'>
+     <view class='list-item' wx:for="{{list}}" wx:key="key" data-id='{{item.id}}'>
+        <view class='list-img'>
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class='list-right'>
+          <view class='list-tlt'>
+            {{item.ename}}
+          </view>
+          <view class='list-info'>
+            <view style="font-size: 20rpx;color: red;" wx:if="{{item.ostate==='3'}}">
+                <text> {{item.ostatename}}</text>
+            </view>
+			<view style="font-size: 20rpx;color: green;" wx:elif="{{item.ostate==='2'}}">
+			    <text>{{item.ostatename}}</text>
+			</view>
+			<view style="font-size: 20rpx;color: #FF820B;"  wx:else>
+			    <text>{{item.ostatename}}</text>
+			</view>
+          </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					真实姓名：<text>{{item.truename}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					联系电话：<text>{{item.mobile}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					邮件地址：<text>{{item.email}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					合作意向：<text>\n</text>
+					<text>{{item.contentnew}}</text>
+				</view>
+		  </view>
+		  <view class='list-info' wx:if="{{item.ostate==='3'}}">
+				<view class='list-num'>
+					驳回意见：<text>\n</text>
+					<text>{{item.tareject}}</text>
+				</view>
+		  </view>
+		  <view class='list-info'>
+				<view class='list-num'>
+					申请时间：<text>{{item.addtime}}</text>
+				</view>
+		  </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 结果为空 -->
+ <view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
+    <image class='empty-img' src="../../images/empty.png"></image>
+    <text>很抱歉，没有找到相关合作信息！</text>
+  </view>
+</view>

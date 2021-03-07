@@ -24,19 +24,27 @@
 	      <image src='../../images/coupon.jpg' mode="widthFix" style='width:100%;' />
 	    <!--  / .coupon--></view>
     <view class='list' style="margin-top: 10px;">
-      <view class='list_item' hover-class="none" wx:for="{{classlist}}" wx:key="key" data-id="{{item.tid}}" bindtap="go_tasklist">
-        <image src='{{item.timg}}' style='width:100%;height: 5.576087rem;border-radius: 10px;' />
-        <view class='list_title'>{{item.tname}}</view>
+      <view class='list_item' hover-class="none" wx:for="{{classlist}}" wx:key="key" data-id="{{item.id}}" bindtap="go_tasklist">
+        <image src='{{item.cimg}}' style='width:100%;height: 5.576087rem;border-radius: 10px;' />
+        <view class='list_title'>{{item.cname}}</view>
       </view>
     </view>
 	<view class="List-title-box">
 		<view class="title-box">
 				<view class="List-icon"></view>
-				<view class="List-title">严选商家</view>
+				<view class="List-title">严选商品</view>
 		</view>
 	</view>
 	<!-- 有结果 -->
-	 <view class='list'>
+	<view class='list' style="margin-top: 10px;">
+	  <view class='list_item' style="margin-bottom: 60px;" hover-class="none" wx:for="{{goodslist}}" wx:key="key" data-id="{{item.id}}" bindtap="godetail">
+	    <image src='{{item.img}}' style='width:100%;height: 10rem;border-radius: 10px;' />
+		<view class='list_title' style="color: #000;top: 165px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.ename}}</view>
+	    <view class='list_title' style="color: #d9363c;top: 188px;"> ￥{{item.batchprice}}  <span style="color: #b3b3b3;"> | </span>  <span style="color: #999;"> {{item.etitle}}</span></view>
+	  </view>
+	</view>
+	
+	 <!-- <view class='list'>
 	   <view class='list-bg'>
 	    <view class='list-item' wx:for="{{goodslist}}" wx:key="key" data-id='{{item.gid}}' bindtap='godetail'>
 	       <view class='list-img'>
@@ -44,18 +52,18 @@
 	       </view>
 	       <view class='list-right'>
 	         <view class='list-tlt'>
-	           <!-- <image style="width: 50px;height: 20px;" src='../../images/csp.jpg'></image> -->
+	           <image style="width: 50px;height: 20px;" src='../../images/csp.jpg'></image>
 			   {{item.gname}}
 	         </view>
 	         <text class='list-remark'>{{item.gtitle}}</text>
 	       </view>
 	     </view>
 	   </view>
-	 </view>
+	 </view> -->
 	 <!-- 结果为空 -->
 	<view class='list-empty' wx:if="{{goodslist.length===0}}" hidden="{{empty_hidden}}">
 	   <image class='empty-img' src="../../images/empty.png"></image>
-	   <text>很抱歉，没有找到相关商家！</text>
+	   <text>很抱歉，没有找到相关商品！</text>
 	 </view>
   </view>
 </view>

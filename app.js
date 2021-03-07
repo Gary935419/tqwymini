@@ -21,8 +21,10 @@ App({
     //商城用户信息
     memberInfo: [],
     token: [],
-	//类型id
+	//类型id  商家
 	tid: 0,
+	//类型id  商品
+	cid: 0,
 	//入驻申请状态
 	ostate: 0,
 	//推荐人id

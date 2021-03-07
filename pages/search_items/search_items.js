@@ -7,7 +7,7 @@ Page({
    */
   data: {
     nav: {
-      title: '商家搜索', //页面标题
+      title: '商品搜索', //页面标题
       back: true, //是否有返回按钮
       home: true, //是否有首页按钮
     },
@@ -55,7 +55,7 @@ Page({
    */
   godetail: function(e) {
     wx.navigateTo({
-      url: '../goods_details/goods_details?gid=' + e.currentTarget.dataset.id,
+      url: '../items_details/items_details?gid=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -69,7 +69,7 @@ Page({
     })
     //调用接口请求数据
     wx.request({
-       url: app.taskapi + '/Task/goodslist',
+       url: app.taskapi + '/Task/itemslist',
       method: 'POST',
       data: {
         pageNumber: that.data.page,

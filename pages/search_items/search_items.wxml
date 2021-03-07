@@ -1,0 +1,37 @@
+<navigationBar text="{{nav.title}}" back="{{nav.back}}" home="{{nav.home}}"></navigationBar>
+<view class="weui-search-bar">
+		<view class="weui-search-bar__form">
+		<!-- 搜索框 -->
+			<view class="weui-search-bar__box" style="width: 18rem;">
+				<icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+				<input type='text' value='{{inputValue}}' name='keywords' bindinput='keyInput' />
+			</view>
+		</view>
+		<!-- 搜索按钮,调用搜索查询方法 -->
+		<!-- <view class="weui-search-bar__cancel-btn" bindtap='searchgoods'>搜索</view> -->
+		<button bindtap='searchgoods' class='weui-search-bar__cancel-btn' style="font-size: 15px;">搜索</button>
+	</view>
+<view class='content'>
+  <!-- 有结果 -->
+  <view class='list'>
+    <view class='list-bg'>
+     <view class='list-item' wx:for="{{list}}" wx:key="key" data-id='{{item.id}}' bindtap='godetail'>
+        <view class='list-img'>
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class='list-right'>
+          <view class='list-tlt'>
+            <!-- <image style="width: 50px;height: 20px;" src='../../images/csp.jpg'></image> -->
+        			   {{item.ename}}
+          </view>
+          <text class='list-remark'>{{item.etitle}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 结果为空 -->
+ <view class='list-empty' wx:if="{{list.length===0}}" hidden="{{empty_hidden}}">
+    <image class='empty-img' src="../../images/empty.png"></image>
+    <text>很抱歉，没有找到相关商品！</text>
+  </view>
+</view>

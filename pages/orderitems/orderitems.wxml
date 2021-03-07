@@ -1,0 +1,26 @@
+ <view class="wan1">
+ <view class='logo-wrapper'>
+         <image src='../../images/tqwy.png'></image>
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>商品名称</view>
+   <input type='text' name="shopname" value="{{ename}}" disabled="true" />
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>姓名</view>
+   <input type='text' name="truename" bindinput='truenameInput' placeholder='请输入姓名' />
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>联系电话</view>
+   <input type='number' name="mobile" bindinput='mobileInput' placeholder='请输入电话号' />
+ </view>
+ <view class='persoanal_info'>
+   <view class='personal_text'>邮箱地址</view>
+   <input type='text' name="email" bindinput='emailInput' placeholder='请输入邮箱地址' />
+ </view>
+ <view class='wan_info' style="padding-left: 14px;padding-right: 14px;margin-bottom: 30px;">
+   <view class='wan_text'>合作意向</view>
+   <textarea placeholder='请您录入合作意向' bindinput='bzInput'></textarea>
+ </view>
+ <button bindtap='gouploadimage' class='yes-upload'>提交合作意向</button>
+</view>

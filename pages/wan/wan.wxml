@@ -8,7 +8,7 @@
  </view>
  <view class='persoanal_info'>
    <view class='personal_text'>电话号</view>
-   <input type='text' name="mobile" bindinput='mobileInput' placeholder='请输入电话号' />
+   <input type='number' name="mobile" bindinput='mobileInput' placeholder='请输入电话号' />
  </view>
  <view class='persoanal_info'>
    <view class='personal_text'>商家名称</view>

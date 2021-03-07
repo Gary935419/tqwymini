@@ -29,7 +29,7 @@
   </view>
   <view class='footer_fix'>
     <view class='footer_btn'>
-      <button class='details_btn col-0068c6' bindtap='goOrder'>下单咨询</button>
+      <button class='details_btn col-0068c6' bindtap='goOrder'>合作申请</button>
     </view>
   </view>
 </view>

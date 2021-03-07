@@ -7,13 +7,14 @@ Page({
    */
   data: {
     nav: {
-      title: '商家搜索', //页面标题
+      title: '合作申请', //页面标题
       back: true, //是否有返回按钮
       home: true, //是否有首页按钮
     },
     //第几页
     page: 1,
-    keycode: '',
+   
+    inithidden: false,
     empty_hidden: true,
 	inputValue: null,
     //商品
@@ -21,59 +22,17 @@ Page({
   },
 
   /**
-   * 获取搜索关键词
-   */
-  keyInput: function(e) {
-	  var that = this;
-	  that.setData({
-	    keycode: e.detail.value
-	  })
-  },
-
-  /**
-   * 查询按钮绑定事件
-   */
-  searchgoods: function() {
-    var that = this;
-    //设置搜索记录
-    if (that.data.keycode != '') {
-      //加载样式显隐
-      that.setData({
-        page: 1
-      })
-      that.get_goods_list();
-    }else{
-		that.setData({
-		  keycode: ''
-		})
-		that.get_goods_list();
-	}
-  },
-
-  /**
-   * 打开详细画面
-   */
-  godetail: function(e) {
-    wx.navigateTo({
-      url: '../goods_details/goods_details?gid=' + e.currentTarget.dataset.id,
-    })
-  },
-
-  /**
-   * 获取搜索商品列表
+   * 获取搜索我的兑换商品列表
    */
   get_goods_list: function() {
     var that = this;
-    wx.showLoading({
-      title: '加载中',
-    })
     //调用接口请求数据
     wx.request({
-       url: app.taskapi + '/Task/goodslist',
+       url: app.taskapi + '/Task/myitemslist',
       method: 'POST',
       data: {
+        token: main.get_storage('token'),
         pageNumber: that.data.page,
-        keywords: that.data.keycode, //搜索关键词
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -112,12 +71,6 @@ Page({
               })
             }
           }
-        } else {
-          wx.showToast({
-            title: res.data.errmsg,
-            icon: 'none',
-            duration: 3000
-          })
         }
         that.setData({
           inithidden: true,
@@ -146,7 +99,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+var that = this;
+  //判断是否已经授权
+  wx.getSetting({
+    success: res => {
+      if (res.authSetting['scope.userInfo']) {
+        
+      } else {
+        wx.showModal({
+                 title: '温馨提示',
+                 content: '当前您未授权,是否立即去授权?',
+                 showCancel: true,//是否显示取消按钮
+                 cancelText:"否",//默认是“取消”
+                 cancelColor:'#111111',//取消文字的颜色
+                 confirmText:"是",//默认是“确定”
+                 confirmColor: '#111111',//确定文字的颜色
+                 success: function (res) {
+                    if (res.cancel) {
+                       wx.switchTab({
+                             url: '/pages/my/my',
+                           });
+                    } else {
+        			   wx.navigateTo({
+        				 url: '/pages/grant_login/grant_login?path=my',
+        			   })
+                    }
+                 },
+        });
+      }
+    }
+  })
   },
 
   /**
